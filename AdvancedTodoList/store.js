@@ -53,5 +53,32 @@ ListStore = {
       item.completed = itemData.completed
       notifyComponents()
     })
+  },
+  deleteItem: function(itemId) {
+    var item = findItemById(itemId)
+
+    var deleteRequest = $.ajax({
+      type: 'DELETE',
+      url: "https://listalous.herokuapp.com/lists/ALICIA-STILLWELL-LIST/items/" + itemId
+    })
+
+    deleteRequest.done(function(itemData) {
+      items.splice(items.indexOf(itemData), 1)
+      notifyComponents()
+    })
+  },
+  editDescription: function(itemId, newDescription) {
+    var item = findItemById(itemId)
+
+    var updateRequest = $.ajax({
+      type: 'PUT',
+      url: "https://listalous.herokuapp.com/lists/ALICIA-STILLWELL-LIST/items/" + itemId,
+      data: { description: newDescription}
+    })
+
+    updateRequest.done(function(itemData) {
+      item.description = newDescription
+      notifyComponents()
+    })
   }
 }

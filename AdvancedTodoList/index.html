@@ -39,7 +39,7 @@
   </nav>
 
   <div id="container">
-    <h1>Your List App</h1>
+    <h1>A list of things!</h1>
     <div id="app">
       <div id='form-container'></div>
       <div id='list-container'></div>
@@ -51,7 +51,7 @@
       render: function() {
         return (
           <form id="add-form" onSubmit={this.handleSubmit}>
-            <input id='create' ref="description" type='text' placeholder='New item' />
+            <input id='create' ref="description" type='text' placeholder='Something new...' />
           </form>
         )
       },
@@ -70,14 +70,22 @@
         return (
           <li className={itemClass}>
             <span className='complete-button' onClick={this.handleComplete}>{'\u2714'}</span>
-            <div className='description'>{this.props.description}</div>
-            <span className='delete-button'>{'\u2718'}</span>
+            <div contentEditable="true" className='description' onBlur={this.handleBlur}>{this.props.description}</div>
+            <span className='delete-button' onClick={this.handleDelete}>{'\u2718'}</span>
           </li>
         )
       },
 
       handleComplete: function() {
         ListStore.toggleCompleteness(this.props.id)
+      },
+
+      handleDelete: function() {
+        ListStore.deleteItem(this.props.id)
+      },
+
+      handleBlur: function(e) {
+        ListStore.editDescription(this.props.id, e.target.innerText)
       }
     })
 
