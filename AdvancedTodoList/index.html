@@ -10,9 +10,34 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react-with-addons.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
   <script src="store.js"></script>
+
+  <!--Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Portfolio</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div id="container">
     <h1>Your List App</h1>
     <div id="app">
@@ -26,7 +51,7 @@
       render: function() {
         return (
           <form id="add-form" onSubmit={this.handleSubmit}>
-            <input id='create' ref="description" type='text' placeholder='Add Something to the list!' />
+            <input id='create' ref="description" type='text' placeholder='New item' />
           </form>
         )
       },
@@ -35,7 +60,7 @@
         event.preventDefault()
         var description = this.refs.description.getDOMNode().value
         this.refs.description.getDOMNode().value = ''
-        alert('trying to create an item with description ' + description)
+        ListStore.addItem(description)
       }
     })
 
@@ -44,11 +69,15 @@
         var itemClass = this.props.completed ? 'item completed' : 'item'
         return (
           <li className={itemClass}>
-            <span className='complete-button'>{'\u2714'}</span>
+            <span className='complete-button' onClick={this.handleComplete}>{'\u2714'}</span>
             <div className='description'>{this.props.description}</div>
             <span className='delete-button'>{'\u2718'}</span>
           </li>
         )
+      },
+
+      handleComplete: function() {
+        ListStore.toggleCompleteness(this.props.id)
       }
     })
 
@@ -80,5 +109,6 @@
 
     React.render(<CreationForm />, document.getElementById('form-container') )
     React.render(<List />, document.getElementById('list-container') )
+    ListStore.loadItems()
   </script>
 </body>
