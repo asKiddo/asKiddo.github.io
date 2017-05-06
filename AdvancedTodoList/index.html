@@ -41,12 +41,36 @@
   <div id="container">
     <h1>A list of things!</h1>
     <div id="app">
+      <div id='sort-container'></div>
       <div id='form-container'></div>
       <div id='list-container'></div>
     </div>
   </div>
 
   <script type="text/jsx">
+    var SortOptions = React.createClass({
+      render: function() {
+        return (
+          <div>
+            <p>sort by: </p>
+            <select class='sort-selector' onChange={this.handleSortChange}>
+              <option value='alphabetic'>A - Z</option>
+              <option value='date'>date</option>
+            </select>
+          </div>
+        )
+      },
+
+      handleSortChange: function(e) {
+        switch(e.target.value) {
+          case "alphabetic":
+            ListStore.sortByAlphabetic()
+          case "date":
+            ListStore.sortByDate()
+        }
+      }
+    })
+
     var CreationForm = React.createClass({
       render: function() {
         return (
@@ -115,6 +139,7 @@
       }
     })
 
+    React.render(<SortOptions />, document.getElementById('sort-container'))
     React.render(<CreationForm />, document.getElementById('form-container') )
     React.render(<List />, document.getElementById('list-container') )
     ListStore.loadItems()

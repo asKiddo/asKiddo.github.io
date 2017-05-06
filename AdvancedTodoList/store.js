@@ -80,5 +80,20 @@ ListStore = {
       item.description = newDescription
       notifyComponents()
     })
-  }
+  },
+  sortByAlphabetic: function() {
+    items.sort(function(a, b) {
+      var descA = a.description.toUpperCase(); // ignore upper and lowercase
+      var descB = b.description.toUpperCase(); // ignore upper and lowercase
+      if (descA < descB) {
+        return -1;
+      }
+      if (descA > descB) {
+        return 1;
+      }
+      return 0;
+    })
+    notifyComponents()
+  },
+  sortByDate: function() {}
 }
