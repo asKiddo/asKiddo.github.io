@@ -6,7 +6,8 @@ var CHUNK = {
     39: "right",
     40: "down",
     37: "left",
-    38: "up"
+    38: "up",
+    13: "enter"
   },
   started: true,
   attrs: {},

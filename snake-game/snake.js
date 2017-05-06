@@ -1,5 +1,4 @@
 // Desired additions:
-//  Start button
 //  Play again ability
 //  Speed control
 
@@ -98,8 +97,17 @@ var advanceGame = function() {
   draw(snake, apple);
 }
 
+// runGame
+var runGame = function(keyVal) {
+  if(keyVal === "enter") {
+    CHUNK.executeNTimesPerSecond(advanceGame, 1);
+    CHUNK.onArrowKey(changeDirection);
+  }
+}
+
+
 // Initialize game
 var snake = [{ top: 1, left: 0, direction: "down" }, { top: 0, left: 0, direction: "down" }];
 var apple = { top: 8, left: 10 };
-CHUNK.executeNTimesPerSecond(advanceGame, 1);
-CHUNK.onArrowKey(changeDirection);
+CHUNK.flashMessage("Press enter to start.");
+CHUNK.onArrowKey(runGame);
