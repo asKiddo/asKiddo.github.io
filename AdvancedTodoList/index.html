@@ -98,6 +98,7 @@
           <li className={itemClass}>
             <span className='complete-button' onClick={this.handleComplete}>{'\u2714'}</span>
             <div contentEditable="true" className='description' onBlur={this.handleBlur}>{this.props.description}</div>
+            <span className='edit-button' onClick={this.handleEdit}>{'\u270E'}</span>
             <span className='delete-button' onClick={this.handleDelete}>{'\u2718'}</span>
           </li>
         )
@@ -113,6 +114,16 @@
 
       handleBlur: function(e) {
         ListStore.editDescription(this.props.id, e.target.innerText)
+      },
+
+      handleEdit: function(e) {
+        var desc = e.target.parentNode.querySelector('.description')
+
+        var range = document.createRange();
+        range.selectNodeContents(desc);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
       }
     })
 
