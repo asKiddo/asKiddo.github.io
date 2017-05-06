@@ -95,5 +95,13 @@ ListStore = {
     })
     notifyComponents()
   },
-  sortByDate: function() {}
+  sortByDate: function() {
+    items.sort(function(a, b) {
+      var dtA = new Date(a.created_at)
+      var dtB = new Date(b.created_at)
+
+      return new Date(a.created_at) - new Date(b.created_at)
+    })
+    notifyComponents()
+  }
 }

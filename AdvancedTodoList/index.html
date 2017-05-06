@@ -54,6 +54,7 @@
           <div>
             <p>sort by: </p>
             <select class='sort-selector' onChange={this.handleSortChange}>
+              <option selected="selected"></option>
               <option value='alphabetic'>A - Z</option>
               <option value='date'>date</option>
             </select>
@@ -64,9 +65,11 @@
       handleSortChange: function(e) {
         switch(e.target.value) {
           case "alphabetic":
-            ListStore.sortByAlphabetic()
+            ListStore.sortByAlphabetic();
+            break;
           case "date":
-            ListStore.sortByDate()
+            ListStore.sortByDate();
+            break;
         }
       }
     })
