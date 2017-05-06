@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <style>
-    #chunk-game {
-      background-color: black;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
+<style>
+  #chunk-game {
+    background-color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
 
-  <title>Snake Game</title>
+<title>Snake Game</title>
 </head>
+
 <body>
-  <p><span class="glyphicon glyphicon-circle-arrow-left"></span>
-    <a href="../index.html"> back</p>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Portfolio</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-  <canvas id="chunk-game" height="600" width="800"></canvas>
+<canvas id="chunk-game" height="600" width="800"></canvas>
 
-  <script type="text/javascript" src="chunk.js"></script>
-  <script type="text/javascript" src="snake.js"></script>
+<script type="text/javascript" src="chunk.js"></script>
+<script type="text/javascript" src="snake.js"></script>
 </body>
 </html>
